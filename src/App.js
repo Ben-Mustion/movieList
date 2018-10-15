@@ -1,27 +1,55 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+//import logo from './logo.svg';
 import './App.css';
+//import index from './index.js';
 
-class App extends Component {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      movies: [
+        {title: 'Mean Girls'},
+        {title: 'Hackers'},
+        {title: 'The Grey'},
+        {title: 'Sunshine'},
+        {title: 'Ex Machina'},
+      ]
+    };
+  }
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+      <Header />
+      <ul>
+        <li>
+           {this.state.movies.map((movie) => <ListItem movies = {movie} /> )}
+        </li>
+      </ul>
       </div>
     );
+  }
+}
+
+class Header extends React.Component {
+  render() {
+     return (
+        <div>
+           <h1>Movie List</h1>
+        </div>
+     );
+  }
+}
+
+class ListItem extends React.Component {
+  render() {
+     return (
+        <ul>
+          <li>{this.props.movies.title}</li>
+        </ul>
+     );
   }
 }
 
